@@ -1,2 +1,3 @@
 import { Service } from "typedi";
-export const Injectable = Service;
+const Injectable = Service;
+export default Injectable;
