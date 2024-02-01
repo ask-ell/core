@@ -31,7 +31,7 @@ import type TokenFactory from './token/token.factory'
 import type Token from './token/token'
 import { isDefinedAndNotNull, isUndefinedOrNull } from './nullables'
 import type {
-  Either,
+  Maybe,
   EntityList,
   IO,
   MaybeNullOrUndefined,
@@ -48,7 +48,7 @@ export type {
   ServerProvider,
   Equalizable,
   Stringable,
-  Either,
+  Maybe,
   EntityList,
   IO,
   MaybeNullOrUndefined,

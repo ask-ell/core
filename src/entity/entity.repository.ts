@@ -1,5 +1,5 @@
 import AbstractEntity from "./entity";
-import UID from "../uid/uid";
+import UID from "../uid";
 
 export default interface EntityRepository<
   Entity extends AbstractEntity<unknown>,
