@@ -1,5 +1,5 @@
-# Blank project with Typescript and Jest pre-installed
-Add a description here.
+# Core
+Core library for Ask'ell projects.
 
 ## Development
 
