@@ -4,6 +4,7 @@ defaultService := node
 
 node_modules/time:
 	$(run) -T $(defaultService) yarn
+	$(run) -T $(defaultService) yarn install:husky
 	touch node_modules/time
 
 dist/time:
