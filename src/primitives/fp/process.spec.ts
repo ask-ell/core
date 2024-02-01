@@ -1,6 +1,6 @@
-import TestMustFailError from "../errors/test-must-fail.error";
-import { matchEither } from "../primitives/fp/either";
-import { pipe } from "../primitives/fp/function";
+import TestMustFailError from "../../errors/test-must-fail.error";
+import { matchEither } from "./either";
+import { pipe } from "./function";
 
 import {
   fail,
