@@ -1,5 +1,5 @@
-import { Either, left, right, matchEither } from "../primitives/fp/either";
-import { pipe } from "../primitives/fp/function";
+import { Either, left, right, matchEither } from "./either";
+import { pipe } from "./function";
 
 export type ProcessResultOrError<ResultType = void> = Either<ResultType, Error>;
 

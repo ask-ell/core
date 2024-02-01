@@ -1,3 +1,6 @@
 import type Equalizable from './primitives/oop/equalizable'
 
-export default interface UID<T> extends Equalizable<UID<T>> {}
+export default interface UID<UIDType, TypeToCompare>
+  extends Equalizable<UID<UIDType, TypeToCompare>> {
+  readonly value: UIDType
+}

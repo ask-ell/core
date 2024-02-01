@@ -30,7 +30,9 @@
     "typescript": "*"
   },
   "dependencies": {
-    "fp-ts": "^2.16.2"
+    "fp-ts": "^2.16.2",
+    "rxjs": "^7.8.1",
+    "typedi": "^0.10.0"
   },
   "jest": {
     "moduleFileExtensions": [

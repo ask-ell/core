@@ -1,10 +1,10 @@
-import CssFile from './assets/css.file'
-import type HTMLViewData from './assets/html.view.data'
-import HTMLView from './assets/html.view'
-import JsFile from './assets/js.file'
-import type EntityProvider from './entity/entity.provider'
-import type EntityRepository from './entity/entity.repository'
-import Entity from './entity/entity'
+import CssFile from './resources/css.file'
+import type HTMLViewData from './resources/html.view.data'
+import HTMLView from './resources/html.view'
+import JsFile from './resources/js.file'
+import type EntityProvider from './primitives/oop/entity/entity.provider'
+import type EntityRepository from './primitives/oop/entity/entity.repository'
+import Entity from './primitives/oop/entity/entity'
 import TestMustFailError from './errors/test-must-fail.error'
 import type ServerProvider from './http/server.provider'
 import { append, find } from './primitives/fp/array'
@@ -13,6 +13,11 @@ import { log } from './primitives/fp/console'
 import { left, matchEither, right } from './primitives/fp/either'
 import { identity, pipe } from './primitives/fp/function'
 import { io } from './primitives/fp/io'
+import type {
+  Maybe,
+  MaybeNullOrUndefined,
+  MaybeUndefined
+} from './primitives/fp/maybe'
 import {
   fromNullableOption,
   matchOption,
@@ -27,15 +32,12 @@ import {
 } from './primitives/fp/string'
 import type Equalizable from './primitives/oop/equalizable'
 import type Stringable from './primitives/oop/stringable'
-import type TokenFactory from './token/token.factory'
-import type Token from './token/token'
+import type TokenFactory from './resources/token/token.factory'
+import type Token from './resources/token/token'
 import { isDefinedAndNotNull, isUndefinedOrNull } from './nullables'
 import type {
-  Maybe,
   EntityList,
   IO,
-  MaybeNullOrUndefined,
-  MaybeUndefined,
   NumberOrNotDefined,
   Option,
   StringOrNotDefined

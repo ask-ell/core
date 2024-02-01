@@ -1,4 +1,4 @@
-import { type MaybeNullOrUndefined } from './types'
+import { type MaybeNullOrUndefined } from './primitives/fp/maybe'
 
 export function isDefinedAndNotNull<T>(obj: MaybeNullOrUndefined<T>): obj is T {
   return !isUndefinedOrNull(obj)
