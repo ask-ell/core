@@ -7,4 +7,3 @@ services:
     working_dir: /usr/src/app
     volumes:
       - $PWD:/usr/src/app
-    command: yarn start

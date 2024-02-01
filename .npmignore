@@ -1,0 +1,15 @@
+.git
+.husky
+node_modules
+src
+.eslintrc.js
+.gitignore
+.gitlab-ci.yml
+.lintstagedrc
+.npmignore
+.prettierignore
+babel.config.js
+docker-compose.yml
+Makefile
+tsconfig.json
+yarn.lock

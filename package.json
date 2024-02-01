@@ -1,15 +1,15 @@
 {
-  "name": "@ask-ell/jest-typescript-starter",
-  "description": "Blank project with Typescript and Jest installed",
-  "version": "0.0.0",
+  "name": "@ask-ell/core",
+  "description": "Core library for Ask'ell projects",
+  "version": "1.0.0",
   "license": "MIT",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "echo \"No build process available\"",
+    "build": "tsc",
     "format": "lint-staged",
-    "lint": "eslint src/*.ts",
+    "lint": "eslint src/*.ts --fix",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "start": "echo \"No start process available\"",
     "postinstall": "husky install .husky"
   },
   "devDependencies": {
@@ -26,9 +26,7 @@
     "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
     "ts-jest": "^29.0.3",
-    "typescript": "*"
-  },
-  "dependencies": {
+    "typescript": "*",
     "jest": "^29.3.1"
   }
 }
