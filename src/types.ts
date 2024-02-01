@@ -8,11 +8,11 @@ export type Option<T> = _Option.Option<T>
 
 export type EntityList = Entity[]
 
-export type Either<A, B> = A | B
+export type Maybe<A, B> = A | B
 
-export type MaybeUndefined<T> = Either<T, undefined>
+export type MaybeUndefined<T> = Maybe<T, undefined>
 
-export type MaybeNullOrUndefined<T> = Either<null, MaybeUndefined<T>>
+export type MaybeNullOrUndefined<T> = Maybe<null, MaybeUndefined<T>>
 
 export type StringOrNotDefined = MaybeNullOrUndefined<string>
 

@@ -1,6 +1,6 @@
 import { MaybeUndefined } from "../types";
 import AbstractEntity from "./entity";
-import UID from "../uid/uid";
+import UID from "../uid";
 
 export default interface EntityProvider<
   Entity extends AbstractEntity,
