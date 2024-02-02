@@ -17,7 +17,6 @@ Core library for Ask'ell projects.
 make test
 ```
 
-
 #### Run tests on "watch" mode
 
 ```bash

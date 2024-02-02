@@ -23,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Make sure the build works
-        run: yarn build
-
       - name: Run tests
         run: yarn test
+
+      - name: Make sure the build works
+        run: yarn build
