@@ -1,4 +1,4 @@
-import { Injectable } from './di/injectable'
+import { Injectable } from './di'
 
 @Injectable()
 export default class Logger {
