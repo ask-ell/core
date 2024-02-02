@@ -33,6 +33,7 @@ test-watch: node_modules/time
 .PHONY: build
 build: node_modules/time
 	$(run) $(defaultService) yarn build
+	$(run) $(defaultService) yarn build:doc
 	touch dist/time
 
 .PHONY: publish
