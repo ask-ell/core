@@ -1,5 +1,5 @@
-import Container from "./container";
+import DependencyInjectionContainer from "./dependency.injection.container";
 import Inject from "./inject";
 import Injectable from "./injectable";
 
-export { Container, Inject, Injectable };
+export { DependencyInjectionContainer, Inject, Injectable };
