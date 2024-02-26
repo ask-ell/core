@@ -2,6 +2,7 @@ import type EntityProvider from "./oop/entity/entity.provider";
 import type EntityRepository from "./oop/entity/entity.repository";
 import Entity from "./oop/entity/entity";
 import EntityUID from "./oop/entity/entity.uid";
+import type PersistedEntity from "./oop/entity/persisted.entity";
 import { append, find } from "./fp/array";
 import { _if } from "./fp/boolean";
 import { log } from "./fp/console";
@@ -22,6 +23,7 @@ export type {
   MaybeUndefined,
   Equalizable,
   Stringable,
+  PersistedEntity,
 };
 
 export {
