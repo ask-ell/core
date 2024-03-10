@@ -6,6 +6,6 @@ export default interface PersistedEntity<
   _Entity extends Entity,
   UIDType,
   _EntityUID extends EntityUID<UIDType, _Entity>
-> extends Equalizable<PersistedEntity<_Entity, UIDType, _EntityUID>> {
+> extends Equalizable {
   readonly uid: _EntityUID;
 }
