@@ -14,6 +14,7 @@ import { fromNullableOption, matchOption, none, some } from "./fp/options";
 import { isEmptyString, length, string, stringToNumber } from "./fp/string";
 import type Equalizable from "./oop/equalizable";
 import type Stringable from "./oop/stringable";
+import PersistedEntityList from "./oop/entity/persist.entity.list";
 
 export type {
   EntityProvider,
@@ -29,6 +30,7 @@ export type {
 export {
   Entity,
   EntityUID,
+  PersistedEntityList,
   append,
   find,
   _if,
