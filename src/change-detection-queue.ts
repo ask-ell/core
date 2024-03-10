@@ -1,6 +1,5 @@
 import { type MaybeUndefined } from './primitives/fp/maybe'
-
-type OnChangesDetectedCallback<Change> = (change: Change) => void
+import { type OnChangesDetectedCallback } from './types'
 
 export default class ChangeDetectionQueue<Change> {
   private readonly callbacks = new Array<OnChangesDetectedCallback<Change>>()
