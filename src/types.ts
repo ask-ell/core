@@ -12,3 +12,11 @@ export type EntityList = Entity[]
 export type StringOrNotDefined = MaybeNullOrUndefined<string>
 
 export type NumberOrNotDefined = MaybeNullOrUndefined<number>
+
+export type OnChangesDetectedCallback<Change> = (change: Change) => void
+
+export interface PercentageIncrementorState {
+  achivmentOnPercent: number
+}
+
+export type OnIncrementCallback = (state: PercentageIncrementorState) => void

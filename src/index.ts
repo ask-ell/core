@@ -9,7 +9,10 @@ import {
   type IO,
   type NumberOrNotDefined,
   type Option,
-  type StringOrNotDefined
+  type StringOrNotDefined,
+  type OnChangesDetectedCallback,
+  type OnIncrementCallback,
+  type PercentageIncrementorState
 } from './types'
 import type UID from './uid'
 
@@ -25,7 +28,10 @@ export type {
   NumberOrNotDefined,
   Option,
   StringOrNotDefined,
-  UID
+  UID,
+  OnChangesDetectedCallback,
+  OnIncrementCallback,
+  PercentageIncrementorState
 }
 
 export {

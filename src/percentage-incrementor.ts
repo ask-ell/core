@@ -1,7 +1,4 @@
-interface PercentageIncrementorState {
-  achivmentOnPercent: number
-}
-type OnIncrementCallback = (state: PercentageIncrementorState) => void
+import { type OnIncrementCallback } from './types'
 
 export default class PercentageIncrementor {
   private achivementIncrement = 0
