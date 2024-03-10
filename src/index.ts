@@ -3,7 +3,7 @@ import Environment from './environment'
 import Logger from './logger'
 import { isDefinedAndNotNull, isUndefinedOrNull } from './nullables'
 import PercentageIncrementor from './percentage-incrementor'
-import { wait } from './promise'
+import { wait } from './wait'
 import {
   type EntityList,
   type IO,
