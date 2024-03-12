@@ -8,13 +8,15 @@ export default class PercentageIncrementor {
 
   increment(): void {
     this.achivementIncrement++
-    this.onIncrementCallbacks.forEach((onIncrementCallback) => {
-      onIncrementCallback({
-        achivmentOnPercent: Math.floor(
-          (100 / this.incrementMax) * this.achivementIncrement
-        )
-      })
-    })
+    this.onIncrementCallbacks.forEach(
+      (onIncrementCallback: OnIncrementCallback): void => {
+        onIncrementCallback({
+          achivmentOnPercent: Math.floor(
+            (100 / this.incrementMax) * this.achivementIncrement
+          )
+        })
+      }
+    )
   }
 
   onIncrement(onIncrementCallback: OnIncrementCallback): void {
