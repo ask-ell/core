@@ -14,7 +14,7 @@ export default class Logger {
     console.error(this.generateTimestamp(), '[ERROR]', ...data)
   }
 
-  private generateTimestamp(): number {
-    return new Date().getTime()
+  private generateTimestamp(): string {
+    return new Date().toLocaleString()
   }
 }
