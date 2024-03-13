@@ -1,4 +1,4 @@
-name: Check Pull Request
+name: Check Pull Request Validity
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  check-pull-request:
+  check-pull-request-validity:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch

@@ -31,10 +31,11 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build documentation
-      - run: yarn build:doc
+        run: yarn build:doc
 
       - name: Publish documentation
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
           FOLDER: docs
