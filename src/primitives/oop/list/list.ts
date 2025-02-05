@@ -1,1 +1,1 @@
-export default class List<T> extends Array<T> {}
+export class List<T> extends Array<T> {}

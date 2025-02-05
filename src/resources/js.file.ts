@@ -1,3 +1,3 @@
-export default class JsFile {
+export class JsFile {
   constructor(readonly src: string) {}
 }

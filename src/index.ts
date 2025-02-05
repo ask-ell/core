@@ -1,8 +1,8 @@
-import ChangeDetectionQueue from './change-detection-queue'
-import Environment from './environment'
-import Logger from './logger'
+import { ChangeDetectionQueue } from './change-detection-queue'
+import { Environment } from './environment'
+import { Logger } from './logger'
 import { isDefinedAndNotNull, isUndefinedOrNull } from './nullables'
-import PercentageIncrementor from './percentage-incrementor'
+import { PercentageIncrementor } from './percentage-incrementor'
 import { wait } from './wait'
 import {
   type EntityList,
@@ -14,7 +14,8 @@ import {
   type OnIncrementCallback,
   type PercentageIncrementorState
 } from './types'
-import type UID from './uid'
+import type { I_UID } from './uid.interface'
+import type { IUseCase } from './use-case.interface'
 
 export * from './di'
 export * from './errors'
@@ -28,10 +29,11 @@ export type {
   NumberOrNotDefined,
   Option,
   StringOrNotDefined,
-  UID,
+  I_UID,
   OnChangesDetectedCallback,
   OnIncrementCallback,
-  PercentageIncrementorState
+  PercentageIncrementorState,
+  IUseCase
 }
 
 export {

@@ -1,3 +1,3 @@
-import ServerProvider from "./server.provider";
+import type { IServerProvider } from "./server.provider";
 
-export type { ServerProvider };
+export type { IServerProvider };

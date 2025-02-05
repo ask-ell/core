@@ -1,7 +1,7 @@
 import type * as _Option from 'fp-ts/lib/Option'
 import type * as _IO from 'fp-ts/lib/IO'
 import { type MaybeNullOrUndefined } from './primitives/fp/maybe'
-import type Entity from './primitives/oop/entity/entity'
+import type Entity from './primitives/oop/entity/implementations/entity'
 
 export type IO<T> = _IO.IO<T>
 

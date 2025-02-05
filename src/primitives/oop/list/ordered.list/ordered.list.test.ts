@@ -1,4 +1,4 @@
-import OrderableList from "./ordered.list";
+import { OrderableList } from "./ordered.list";
 import { OrderedListElement } from "./types";
 
 describe(OrderableList.name, () => {

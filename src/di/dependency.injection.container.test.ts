@@ -1,6 +1,6 @@
 import "reflect-metadata";
-import DependencyInjectionContainer from "./dependency.injection.container";
-import Injectable from "./injectable";
+import { DependencyInjectionContainer } from "./dependency.injection.container";
+import { Injectable } from "./injectable";
 
 @Injectable()
 class FakeInjectableA {}

@@ -1,7 +1,7 @@
 import { Injectable } from './di'
 
 @Injectable()
-export default class Logger {
+export class Logger {
   info(...data: any[]): void {
     console.info(this.generateTimestamp(), '[INFO]', ...data)
   }

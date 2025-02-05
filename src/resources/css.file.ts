@@ -1,3 +1,3 @@
-export default class CssFile {
+export class CssFile {
   constructor(readonly href: string) {}
 }

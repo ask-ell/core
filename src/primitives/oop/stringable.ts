@@ -1,3 +1,3 @@
-export default interface Stringable {
+export interface IStringable {
   toString: () => string;
 }
