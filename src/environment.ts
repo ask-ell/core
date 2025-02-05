@@ -5,7 +5,7 @@ import { Injectable } from './di'
 import { UnknownEnvironmentVariableError } from './errors'
 
 @Injectable()
-export default class Environment<EnvironmentState> {
+export class Environment<EnvironmentState> {
   private readonly state: EnvironmentState
 
   constructor() {

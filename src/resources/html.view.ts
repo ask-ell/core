@@ -1,5 +1,5 @@
-import type HTMLViewData from "./html.view.data";
+import type { IHTMLViewData } from "./html.view.data.interface";
 
-export default class HTMLView {
-  constructor(readonly data: HTMLViewData) {}
+export class HTMLView {
+  constructor(readonly data: IHTMLViewData) {}
 }

@@ -1,6 +1,6 @@
-import Stringable from "../primitives/oop/stringable";
+import { IStringable } from "../primitives/oop/stringable";
 
-export default class Json<Data> implements Stringable {
+export class Json<Data> implements IStringable {
   constructor(private data: Data) {}
 
   toString(): string {

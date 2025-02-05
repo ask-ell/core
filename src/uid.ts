@@ -1,5 +1,9 @@
-import type Equalizable from './primitives/oop/equalizable'
+import type { I_UID } from './uid.interface'
 
-export default interface UID<UIDType> extends Equalizable {
-  readonly value: UIDType
+export class UID<UIDType> implements I_UID<UIDType> {
+  constructor(readonly value: UIDType) {}
+
+  isEquals(valueToCompare: this): boolean {
+    return this.value === valueToCompare.value
+  }
 }

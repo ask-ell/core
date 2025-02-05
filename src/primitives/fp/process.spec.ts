@@ -1,4 +1,4 @@
-import TestMustFailError from "../../errors/test-must-fail.error";
+import { TestMustFailError } from "../../errors";
 import { matchEither } from "./either";
 import { pipe } from "./function";
 

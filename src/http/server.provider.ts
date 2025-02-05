@@ -1,5 +1,5 @@
 import type { Server } from "node:http";
 
-export default interface ServerProvider {
+export interface IServerProvider {
   listen: (port: number) => Promise<Server>;
 }

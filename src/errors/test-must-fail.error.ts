@@ -1,4 +1,4 @@
-export default class TestMustFailError extends Error {
+export class TestMustFailError extends Error {
   constructor() {
     super("Test must fail");
   }

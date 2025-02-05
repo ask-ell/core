@@ -1,6 +1,6 @@
 import { type OnIncrementCallback } from './types'
 
-export default class PercentageIncrementor {
+export class PercentageIncrementor {
   private achivementIncrement = 0
   private readonly onIncrementCallbacks: OnIncrementCallback[] = []
 
