@@ -19,6 +19,7 @@ import { io } from "./fp/io";
 import { fromNullableOption, matchOption, none, some } from "./fp/options";
 import { isEmptyString, length, string, stringToNumber } from "./fp/string";
 import { PersistedEntityFactory } from "./oop/entity/implementations/persisted.entity.factory";
+import { PersistedEntity } from "./oop/entity/implementations/persisted.entity";
 
 export type {
   IEntityProvider,
@@ -39,6 +40,7 @@ export {
   EntityUID,
   PersistedEntityList,
   PersistedEntityFactory,
+  PersistedEntity,
   append,
   find,
   _if,

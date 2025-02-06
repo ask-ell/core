@@ -1,35 +1,14 @@
-import PersistedEntity from "../entity/persisted.entity.interface";
-import Input from "./input";
-import InputUID from "./input.uid";
-import { InputData } from "../input.state";
+import { PersistedEntity } from "../../primitives/oop/entity/implementations/persisted.entity";
+import { InputState } from "../input.state";
+import { IInput } from "../interfaces/input.interface";
+import { IInputUID } from "../interfaces/input.uid.interface";
+import { IPersistedInput } from "../interfaces/persisted.input.interface";
 
-export default class PersistedInput<UIDType, ProcessUIDType>
-  extends Input<ProcessUIDType>
-  implements
-    PersistedEntity<
-      Input<ProcessUIDType>,
-      UIDType,
-      InputUID<UIDType, ProcessUIDType>
-    >
-{
-  constructor(
-    readonly uid: InputUID<UIDType, ProcessUIDType>,
-    data: InputData<ProcessUIDType>
-  ) {
-    super(data);
-  }
-
-  getUid(): InputUID<UIDType, ProcessUIDType> {
-    return this.uid;
-  }
-
-  isEquals(
-    valueToCompare: PersistedEntity<
-      Input<ProcessUIDType>,
-      UIDType,
-      InputUID<UIDType, ProcessUIDType>
-    >
-  ): boolean {
-    return this.uid.isEquals(valueToCompare.uid);
-  }
-}
+export class PersistedInput<UIDType, ProcessUIDType>
+  extends PersistedEntity<
+    InputState<ProcessUIDType>,
+    IInput<ProcessUIDType>,
+    UIDType,
+    IInputUID<UIDType, ProcessUIDType>
+  >
+  implements IPersistedInput<UIDType, ProcessUIDType> {}

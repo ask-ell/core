@@ -1,5 +1,7 @@
-import { InputData } from "../input.state";
+import { Entity } from "../../primitives";
+import { InputState } from "../input.state";
+import { IInput } from "../interfaces/input.interface";
 
-export default class Input<ProcessUIDType> extends Entity<
-  InputData<ProcessUIDType>
-> {}
+export class Input<ProcessUIDType>
+  extends Entity<InputState<ProcessUIDType>>
+  implements IInput<ProcessUIDType> {}

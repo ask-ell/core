@@ -1,6 +1,6 @@
-import ProcessUID from "../process/implementations/process.uid";
+import { IProcessUID } from "../process/interfaces/process.uid.interface";
 
-export type InputData<ProcessUIDType> = {
-  processUid: ProcessUID<ProcessUIDType>;
+export type InputState<ProcessUIDType> = {
+  processUid: IProcessUID<ProcessUIDType>;
   value: string;
 };

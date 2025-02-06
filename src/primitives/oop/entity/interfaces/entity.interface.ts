@@ -1,3 +1,3 @@
-export interface IEntity<State> {
-  getSnapshot(): State;
+export interface IEntity<EntityState> {
+  getSnapshot(): EntityState;
 }

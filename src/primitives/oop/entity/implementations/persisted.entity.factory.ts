@@ -2,21 +2,39 @@ import { IEntity } from "../interfaces/entity.interface";
 import { IEntityUID } from "../interfaces/entity.uid.interface";
 import { IPersistedEntity } from "../interfaces/persisted.entity.interface";
 import { IPersistedEntityFactory } from "../interfaces/persisted.entity.factory.interface";
+import { PersistedEntityContructor } from "../types";
 
-export abstract class PersistedEntityFactory<
-  State,
-  _Entity extends IEntity<State>,
+export class PersistedEntityFactory<
+  EntityState,
+  _Entity extends IEntity<EntityState>,
   UIDType,
   _EntityUID extends IEntityUID<UIDType, _Entity>,
-  _PersistedEntity extends IPersistedEntity<State, _Entity, UIDType, _EntityUID>
+  _PersistedEntity extends IPersistedEntity<
+    EntityState,
+    _Entity,
+    UIDType,
+    _EntityUID
+  >
 > implements
     IPersistedEntityFactory<
-      State,
+      EntityState,
       _Entity,
       UIDType,
       _EntityUID,
       _PersistedEntity
     >
 {
-  abstract createFromEntity(uid: _EntityUID, entity: _Entity): _PersistedEntity;
+  constructor(
+    private entityContructor: PersistedEntityContructor<
+      EntityState,
+      _Entity,
+      UIDType,
+      _EntityUID,
+      _PersistedEntity
+    >
+  ) {}
+
+  createFromEntity(uid: _EntityUID, entity: _Entity): _PersistedEntity {
+    return new this.entityContructor(uid, entity.getSnapshot());
+  }
 }
