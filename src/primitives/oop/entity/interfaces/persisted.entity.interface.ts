@@ -3,11 +3,11 @@ import { IEntity } from "./entity.interface";
 import { IEntityUID } from "./entity.uid.interface";
 
 export interface IPersistedEntity<
-  State,
-  _Entity extends IEntity<State>,
+  EntityState,
+  _Entity extends IEntity<EntityState>,
   UIDType,
   _EntityUID extends IEntityUID<UIDType, _Entity>
 > extends IEqualizable,
-    IEntity<State> {
+    IEntity<EntityState> {
   readonly uid: _EntityUID;
 }

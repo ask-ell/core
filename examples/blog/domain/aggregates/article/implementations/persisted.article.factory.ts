@@ -25,7 +25,7 @@ export class PersistedArticleFactory
       IPersistedArticle
     >
 {
-  createFromEntity(uid: IArticleUID, entity: IArticle): IPersistedArticle {
-    return new PersistedArticle(uid, entity.getSnapshot());
+  constructor() {
+    super(PersistedArticle);
   }
 }

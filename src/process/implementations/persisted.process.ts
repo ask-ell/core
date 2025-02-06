@@ -1,17 +1,9 @@
+import { PersistedEntity } from "../../primitives/oop/entity/implementations/persisted.entity";
 import { IPersistedProcess } from "../interfaces/persisted.process.interface";
+import { IProcess } from "../interfaces/process.interface";
 import { IProcessUID } from "../interfaces/process.uid.interface";
 import { ProcessState } from "../types";
-import { Process } from "./process";
 
 export class PersistedProcess<UIDType>
-  extends Process
-  implements IPersistedProcess<UIDType>
-{
-  constructor(readonly uid: IProcessUID<UIDType>, data: ProcessState) {
-    super(data);
-  }
-
-  isEquals(valueToCompare: this): boolean {
-    return this.uid.isEquals(valueToCompare.uid);
-  }
-}
+  extends PersistedEntity<ProcessState, IProcess, UIDType, IProcessUID<UIDType>>
+  implements IPersistedProcess<UIDType> {}
