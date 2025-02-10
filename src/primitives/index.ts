@@ -5,11 +5,13 @@ import type { Maybe, MaybeNullOrUndefined, MaybeUndefined } from "./fp/maybe";
 import type { IEqualizable } from "./oop/equalizable";
 import type { IStringable } from "./oop/stringable";
 import type { IEntity } from "./oop/entity/interfaces/entity.interface";
-import type { IEntityUID } from "./oop/entity/interfaces/entity.uid.interface";
-import type { IPersistedEntityFactory } from "./oop/entity/interfaces/persisted.entity.factory.interface";
-import { Entity } from "./oop/entity/implementations/entity";
-import { EntityUID } from "./oop/entity/implementations/entity.uid";
-import { PersistedEntityList } from "./oop/entity/implementations/persist.entity.list";
+import type { IEntitySnapshot } from "./oop/entity/interfaces/entity.snapshot.interface";
+import type { IPersistedEntitySnapshot } from "./oop/entity/interfaces/persisted.entity.snapshot.interface";
+import type { ISnapshotable } from "./oop/snapshotable.interface";
+import type { IEntityBase } from "./oop/entity/interfaces/entity.base.interface";
+
+import { EntityBase } from "./oop/entity/implementations/entity.base";
+
 import { append, find } from "./fp/array";
 import { _if } from "./fp/boolean";
 import { log } from "./fp/console";
@@ -18,8 +20,6 @@ import { identity, pipe } from "./fp/function";
 import { io } from "./fp/io";
 import { fromNullableOption, matchOption, none, some } from "./fp/options";
 import { isEmptyString, length, string, stringToNumber } from "./fp/string";
-import { PersistedEntityFactory } from "./oop/entity/implementations/persisted.entity.factory";
-import { PersistedEntity } from "./oop/entity/implementations/persisted.entity";
 
 export type {
   IEntityProvider,
@@ -31,16 +31,14 @@ export type {
   IStringable,
   IPersistedEntity,
   IEntity,
-  IEntityUID,
-  IPersistedEntityFactory,
+  IEntitySnapshot,
+  IPersistedEntitySnapshot,
+  ISnapshotable,
+  IEntityBase,
 };
 
 export {
-  Entity,
-  EntityUID,
-  PersistedEntityList,
-  PersistedEntityFactory,
-  PersistedEntity,
+  EntityBase,
   append,
   find,
   _if,

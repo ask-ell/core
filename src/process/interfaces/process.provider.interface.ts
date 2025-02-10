@@ -1,14 +1,8 @@
 import { IEntityProvider } from "../../primitives";
-import { ProcessState } from "../types";
-import { IPersistedProcess } from "./persisted.process.interface";
-import { IProcess } from "./process.interface";
-import { IProcessUID } from "./process.uid.interface";
+import { IPersistedProcessSnapshot } from "./persisted.process.snapshot.interface";
 
-export interface IProcessProvider<UIDType>
+export interface IProcessProvider<UIDValueType>
   extends IEntityProvider<
-    ProcessState,
-    IProcess,
-    UIDType,
-    IProcessUID<UIDType>,
-    IPersistedProcess<UIDType>
+    UIDValueType,
+    IPersistedProcessSnapshot<UIDValueType>
   > {}

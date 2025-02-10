@@ -1,7 +1,11 @@
-import { Entity } from "../../primitives";
-import { InputState } from "../input.state";
-import { IInput } from "../interfaces/input.interface";
+import type { IInput } from "../interfaces/input.interface";
+import { IInputSnapshot } from "../interfaces/input.snapshot.interface";
+import { InputBase } from "./input.base";
 
-export class Input<ProcessUIDType>
-  extends Entity<InputState<ProcessUIDType>>
-  implements IInput<ProcessUIDType> {}
+export class Input<UIDValueType, ProcessUIDValueType>
+  extends InputBase<
+    UIDValueType,
+    ProcessUIDValueType,
+    IInputSnapshot<UIDValueType, ProcessUIDValueType>
+  >
+  implements IInput<UIDValueType, ProcessUIDValueType> {}

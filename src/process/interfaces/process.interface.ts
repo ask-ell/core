@@ -1,4 +1,10 @@
 import { IEntity } from "../../primitives";
-import { ProcessState } from "../types";
+import { IPersistedProcessSnapshot } from "./persisted.process.snapshot.interface";
+import { IProcessSnapshot } from "./process.snapshot.interface";
 
-export interface IProcess extends IEntity<ProcessState> {}
+export interface IProcess<UIDValueType>
+  extends IEntity<
+    UIDValueType,
+    IPersistedProcessSnapshot<UIDValueType>,
+    IProcessSnapshot<UIDValueType>
+  > {}

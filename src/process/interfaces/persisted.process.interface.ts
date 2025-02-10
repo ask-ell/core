@@ -1,13 +1,9 @@
-import { IPersistedEntity } from "@_core";
+import type { IPersistedEntity } from "../../primitives";
+import type { IPersistedProcessSnapshot } from "./persisted.process.snapshot.interface";
 
-import { ProcessState } from "../types";
-import { IProcess } from "./process.interface";
-import { IProcessUID } from "./process.uid.interface";
-
-export interface IPersistedProcess<UIDType>
+export interface IPersistedProcess<UIDValueType>
   extends IPersistedEntity<
-    ProcessState,
-    IProcess,
-    UIDType,
-    IProcessUID<UIDType>
+    UIDValueType,
+    IPersistedProcessSnapshot<UIDValueType>,
+    IPersistedProcess<UIDValueType>
   > {}

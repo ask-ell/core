@@ -5,7 +5,6 @@ import { isDefinedAndNotNull, isUndefinedOrNull } from './nullables'
 import { PercentageIncrementor } from './percentage-incrementor'
 import { wait } from './wait'
 import {
-  type EntityList,
   type IO,
   type NumberOrNotDefined,
   type Option,
@@ -24,7 +23,6 @@ export * from './primitives'
 export * from './resources'
 
 export type {
-  EntityList,
   IO,
   NumberOrNotDefined,
   Option,

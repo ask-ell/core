@@ -1,14 +1,10 @@
-import { IEntityRepository } from "../../primitives";
-import { InputState } from "../input.state";
-import { IInput } from "./input.interface";
-import { IInputUID } from "./input.uid.interface";
-import { IPersistedInput } from "./persisted.input.interface";
+import type { IEntityRepository } from "../../primitives";
+import type { IInputSnapshot } from "./input.snapshot.interface";
+import type { IPersistedInputSnapshot } from "./persisted.input.snapshot.interface";
 
-export interface IInputRepository<UIDType, ProcessUIDType>
+export interface IInputRepository<UIDValueType, ProcessUIDValueType>
   extends IEntityRepository<
-    InputState<ProcessUIDType>,
-    IInput<ProcessUIDType>,
-    UIDType,
-    IInputUID<UIDType, ProcessUIDType>,
-    IPersistedInput<UIDType, ProcessUIDType>
+    UIDValueType,
+    IPersistedInputSnapshot<UIDValueType, ProcessUIDValueType>,
+    IInputSnapshot<UIDValueType, ProcessUIDValueType>
   > {}
