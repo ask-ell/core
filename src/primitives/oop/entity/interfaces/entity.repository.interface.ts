@@ -1,20 +1,17 @@
-import { IEntity } from "./entity.interface";
-import { IEntityUID } from "./entity.uid.interface";
-import { IPersistedEntity } from "./persisted.entity.interface";
+import { IPersistedEntitySnapshot } from "./persisted.entity.snapshot.interface";
+import { IEntitySnapshot } from "./entity.snapshot.interface";
+import { MaybeUndefined } from "../../../fp/maybe";
 
 export interface IEntityRepository<
-  EntityState,
-  _Entity extends IEntity<EntityState>,
-  UIDType,
-  _EntityUID extends IEntityUID<UIDType, _Entity>,
-  _PersistedEntity extends IPersistedEntity<
-    EntityState,
-    _Entity,
-    UIDType,
-    _EntityUID
+  UIDValueType,
+  _PersistedEntitySnapshot extends IPersistedEntitySnapshot<UIDValueType>,
+  _EntitySnapshot extends IEntitySnapshot<
+    UIDValueType,
+    _PersistedEntitySnapshot
   >
 > {
-  save(entity: _Entity): Promise<_PersistedEntity>;
-  updateOne(entityToUpdate: _PersistedEntity): Promise<void>;
-  removeOne(uid: _EntityUID): Promise<boolean>;
+  save(entitySnapshot: _EntitySnapshot): Promise<_PersistedEntitySnapshot>;
+  updateOne(
+    persistedEntitySnapshot: _PersistedEntitySnapshot
+  ): Promise<MaybeUndefined<_PersistedEntitySnapshot>>;
 }

@@ -1,23 +1,18 @@
 import { Observable } from "rxjs";
 
 import type { IEntityProvider, MaybeUndefined } from "../../primitives";
-import { InputState } from "../input.state";
-import { IInput } from "./input.interface";
-import { IInputUID } from "./input.uid.interface";
-import { IPersistedInput } from "./persisted.input.interface";
-import { IProcessUID } from "../../process/interfaces/process.uid.interface";
+import { IPersistedInputSnapshot } from "./persisted.input.snapshot.interface";
 
-export interface IInputProvider<UIDType, ProcessUIDType>
+export interface IInputProvider<UIDValueType, ProcessUIDValueType>
   extends IEntityProvider<
-    InputState<ProcessUIDType>,
-    IInput<ProcessUIDType>,
-    UIDType,
-    IInputUID<UIDType, ProcessUIDType>,
-    IPersistedInput<UIDType, ProcessUIDType>
+    UIDValueType,
+    IPersistedInputSnapshot<UIDValueType, ProcessUIDValueType>
   > {
   findByProcess$(
-    processUid: IProcessUID<ProcessUIDType>
+    processUID: ProcessUIDValueType
   ): Promise<
-    MaybeUndefined<Observable<IPersistedInput<UIDType, ProcessUIDType>>>
+    MaybeUndefined<
+      Observable<IPersistedInputSnapshot<UIDValueType, ProcessUIDValueType>>
+    >
   >;
 }

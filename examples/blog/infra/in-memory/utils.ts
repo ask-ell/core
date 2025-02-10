@@ -1,6 +1,9 @@
-import { ArticleUID, IArticleUID, UIDType } from "../../domain";
+import { wait } from "@_core";
 
-const generateRandomUIDValue: () => UIDType = () => new Date().getTime();
+import { UIDValueType } from "../../domain";
 
-export const generateRandomArticleUID: () => IArticleUID = () =>
-  new ArticleUID(generateRandomUIDValue());
+export const generateRandomUID: () => UIDValueType = () => new Date().getTime();
+
+export const fakeWait = () => wait(0);
+
+export const breakReference = <T>(object: T): T => ({ ...object });

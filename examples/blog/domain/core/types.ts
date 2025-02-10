@@ -1,1 +1,1 @@
-export type UIDType = number;
+export type UIDValueType = number;

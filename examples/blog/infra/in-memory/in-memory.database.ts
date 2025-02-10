@@ -1,15 +1,16 @@
-import type { UIDType, IPersistedArticle } from "../../domain";
+import type { IPersistedArticleSnapshot, UIDValueType } from "../../domain";
+import { breakReference } from "./utils";
 
 type InMemoryDatabaseConstructor = {
-  articles?: IPersistedArticle[];
+  articles?: IPersistedArticleSnapshot[];
 };
 
 export class InMemoryDatabase {
-  readonly articles: Map<UIDType, IPersistedArticle> = new Map();
+  readonly articles: Map<UIDValueType, IPersistedArticleSnapshot> = new Map();
 
   constructor(data?: InMemoryDatabaseConstructor) {
-    data?.articles?.forEach((article: IPersistedArticle): void => {
-      this.articles.set(article.uid.value, article);
+    data?.articles?.forEach((article: IPersistedArticleSnapshot): void => {
+      this.articles.set(article.uid, breakReference(article));
     });
   }
 }

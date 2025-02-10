@@ -1,36 +1,39 @@
-import { wait } from "@_core";
+import { MaybeUndefined } from "@_core";
 
-import type {
-  IArticle,
+import {
+  IArticleSnapshot,
   IArticleRepository,
-  IPersistedArticle,
-  IArticleUID,
-  IPersistedArticleFactory,
+  IPersistedArticleSnapshot,
+  UIDValueType,
 } from "../../domain";
 
 import { InMemoryDatabase } from "./in-memory.database";
-import { generateRandomArticleUID } from "./utils";
+import { fakeWait, generateRandomUID, breakReference } from "./utils";
 
 export class InMemoryArticleRepository implements IArticleRepository {
-  constructor(
-    private database: InMemoryDatabase,
-    private persistedArticleFactory: IPersistedArticleFactory
-  ) {}
+  constructor(private database: InMemoryDatabase) {}
 
-  async save(entity: IArticle): Promise<IPersistedArticle> {
-    await wait(0);
-    const entityUID: IArticleUID = generateRandomArticleUID();
-    const persistedArticle: IPersistedArticle =
-      this.persistedArticleFactory.createFromEntity(entityUID, entity);
-    this.database.articles.set(entityUID.value, persistedArticle);
-    return persistedArticle;
+  async save(
+    entitySnapshot: IArticleSnapshot
+  ): Promise<IPersistedArticleSnapshot> {
+    await fakeWait();
+    const uid: UIDValueType = generateRandomUID();
+    const newArticle: IPersistedArticleSnapshot = {
+      uid,
+      ...entitySnapshot,
+    };
+    this.database.articles.set(uid, newArticle);
+    return breakReference(newArticle);
   }
 
-  updateOne(entityToUpdate: IPersistedArticle): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
-
-  removeOne(uid: IArticleUID): Promise<boolean> {
-    throw new Error("Method not implemented.");
+  async updateOne(
+    persistedEntitySnapshot: IPersistedArticleSnapshot
+  ): Promise<MaybeUndefined<IPersistedArticleSnapshot>> {
+    await fakeWait();
+    this.database.articles.set(
+      persistedEntitySnapshot.uid,
+      persistedEntitySnapshot
+    );
+    return breakReference(persistedEntitySnapshot);
   }
 }

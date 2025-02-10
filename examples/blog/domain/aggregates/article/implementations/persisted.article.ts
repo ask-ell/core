@@ -1,11 +1,12 @@
-import { PersistedEntity } from "@_core";
-
-import { ArticleState } from "../article.state";
+import { IPersistedArticleSnapshot } from "../interfaces/persisted.article.snapshot.interface";
 import { IPersistedArticle } from "../interfaces/persisted.article.interface";
-import { IArticleUID } from "../interfaces/article.uid.interface";
-import { IArticle } from "../interfaces/article.interface";
-import { UIDType } from "../../../core/types";
+import { ArticleBase } from "./article.base";
 
 export class PersistedArticle
-  extends PersistedEntity<ArticleState, IArticle, UIDType, IArticleUID>
-  implements IPersistedArticle {}
+  extends ArticleBase<IPersistedArticleSnapshot>
+  implements IPersistedArticle
+{
+  isEquals(valueToCompare: IPersistedArticle): boolean {
+    return this.data.uid === valueToCompare.getSnapshot().uid;
+  }
+}

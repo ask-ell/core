@@ -1,29 +1,19 @@
 import type { IUseCase } from "@_core";
 
+import type { IArticleSnapshot } from "../aggregates/article/interfaces/article.snapshot.interface";
+import type { IPersistedArticleSnapshot } from "../aggregates/article/interfaces/persisted.article.snapshot.interface";
+import type { IArticleRepository } from "../aggregates/article/interfaces/article.repository.interface";
+import type { IArticle } from "../aggregates/article/interfaces/article.interface";
 import { Article } from "../aggregates/article/implementations/article";
-import { IArticleRepository } from "../aggregates/article/interfaces/article.repository.interface";
-import { IPersistedArticle } from "../aggregates/article/interfaces/persisted.article.interface";
-import { IArticle } from "../aggregates/article/interfaces/article.interface";
-
-export type CreateArticleUseCaseDTO = {
-  title: string;
-  description?: string;
-};
 
 export interface ICreateArticleUseCase
-  extends IUseCase<CreateArticleUseCaseDTO, IPersistedArticle> {}
+  extends IUseCase<IArticleSnapshot, Promise<IPersistedArticleSnapshot>> {}
 
 export class CreateArticleUseCase implements ICreateArticleUseCase {
   constructor(private articleRepository: IArticleRepository) {}
 
-  run({
-    title,
-    description,
-  }: CreateArticleUseCaseDTO): Promise<IPersistedArticle> {
-    const newArticle: IArticle = new Article({
-      title,
-      description,
-    });
-    return this.articleRepository.save(newArticle);
+  run(dto: IArticleSnapshot): Promise<IPersistedArticleSnapshot> {
+    const newArticle: IArticle = new Article(dto);
+    return this.articleRepository.save(newArticle.getSnapshot());
   }
 }

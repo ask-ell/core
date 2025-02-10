@@ -1,9 +1,12 @@
-import { PersistedEntity } from "../../primitives/oop/entity/implementations/persisted.entity";
 import { IPersistedProcess } from "../interfaces/persisted.process.interface";
-import { IProcess } from "../interfaces/process.interface";
-import { IProcessUID } from "../interfaces/process.uid.interface";
-import { ProcessState } from "../types";
+import { IPersistedProcessSnapshot } from "../interfaces/persisted.process.snapshot.interface";
+import { ProcessBase } from "./process.base";
 
-export class PersistedProcess<UIDType>
-  extends PersistedEntity<ProcessState, IProcess, UIDType, IProcessUID<UIDType>>
-  implements IPersistedProcess<UIDType> {}
+export class PersistedProcess<UIDValueType>
+  extends ProcessBase<UIDValueType, IPersistedProcessSnapshot<UIDValueType>>
+  implements IPersistedProcess<UIDValueType>
+{
+  isEquals(valueToCompare: IPersistedProcess<UIDValueType>): boolean {
+    return this.data.uid === valueToCompare.getSnapshot().uid;
+  }
+}

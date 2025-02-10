@@ -1,34 +1,91 @@
+import { MaybeUndefined, TestMustFailError } from "@_core";
+
 import type {
   IArticleRepository,
-  IPersistedArticle,
-  CreateArticleUseCaseDTO,
-  IPersistedArticleFactory,
+  IArticleSnapshot,
   ICreateArticleUseCase,
+  IUpdateArticleUseCase,
+  IPersistedArticleSnapshot,
+  IArticleProvider,
 } from "./domain";
-import { CreateArticleUseCase, PersistedArticleFactory } from "./domain";
+import {
+  CreateArticleUseCase,
+  UpdateArticleUseCase,
+  WrongArticleTitleSizeError,
+} from "./domain";
 
-import { InMemoryArticleRepository, InMemoryDatabase } from "./infra/in-memory";
+import {
+  InMemoryArticleProvider,
+  InMemoryArticleRepository,
+  InMemoryDatabase,
+} from "./infra/in-memory";
 
 describe("Blog tests", (): void => {
-  it("A user can create an article", async (): Promise<void> => {
-    const database: InMemoryDatabase = new InMemoryDatabase();
-    const persistedArticleFactory: IPersistedArticleFactory =
-      new PersistedArticleFactory();
-    const articleRepository: IArticleRepository = new InMemoryArticleRepository(
-      database,
-      persistedArticleFactory
-    );
-    const createArticleUseCase: ICreateArticleUseCase =
-      new CreateArticleUseCase(articleRepository);
+  let database: InMemoryDatabase;
+  let articleRepository: IArticleRepository;
+  let arcticleProvider: IArticleProvider;
+  let createArticleUseCase: ICreateArticleUseCase;
+  let updateArticleUseCase: IUpdateArticleUseCase;
 
-    const dto: CreateArticleUseCaseDTO = {
+  async function createArticle(): Promise<IPersistedArticleSnapshot> {
+    const dto: IArticleSnapshot = {
       title: "My article's title",
+      description: "My article's description",
     };
-    const createdArticle: IPersistedArticle = await createArticleUseCase.run(
-      dto
-    );
+    const createdArticle: IPersistedArticleSnapshot =
+      await createArticleUseCase.run(dto);
+    expect(createdArticle.title).toEqual(dto.title);
+    expect(createdArticle.description).toEqual(dto.description);
+    return createdArticle;
+  }
 
-    expect(createdArticle.getSnapshot().title).toEqual(dto.title);
-    expect(createdArticle.getSnapshot().description).toBeUndefined();
+  beforeEach((): void => {
+    database = new InMemoryDatabase();
+    articleRepository = new InMemoryArticleRepository(database);
+    arcticleProvider = new InMemoryArticleProvider(database);
+    createArticleUseCase = new CreateArticleUseCase(articleRepository);
+    updateArticleUseCase = new UpdateArticleUseCase(
+      articleRepository,
+      arcticleProvider
+    );
+  });
+
+  it("A user cannot create an article with an empty title", async () => {
+    try {
+      const dto: IArticleSnapshot = {
+        title: "",
+        description: "My article's description",
+      };
+      await createArticleUseCase.run(dto);
+      throw new TestMustFailError();
+    } catch (error) {
+      expect(error).toBeInstanceOf(WrongArticleTitleSizeError);
+    }
+  });
+
+  it("A user can create an article", createArticle);
+
+  it("A user cannot update an article with an empty title", async () => {
+    try {
+      const createdArticle: IPersistedArticleSnapshot = await createArticle();
+      createdArticle.title = "";
+      await updateArticleUseCase.run(createdArticle);
+      throw new TestMustFailError();
+    } catch (error) {
+      expect(error).toBeInstanceOf(WrongArticleTitleSizeError);
+    }
+  });
+
+  it("A user can update an article", async (): Promise<void> => {
+    const createdArticle: IPersistedArticleSnapshot = await createArticle();
+    createdArticle.title = "My article's new title";
+    createdArticle.description = "My article's new description";
+
+    const updatedArticle: MaybeUndefined<IPersistedArticleSnapshot> =
+      await updateArticleUseCase.run(createdArticle);
+
+    expect(updatedArticle).toBeDefined();
+    expect(updatedArticle!.title).toEqual(createdArticle.title);
+    expect(updatedArticle!.description).toEqual(createdArticle.description);
   });
 });

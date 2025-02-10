@@ -1,12 +1,15 @@
-import { IPersistedEntity } from "../../primitives";
-import { InputState } from "../input.state";
-import { IInput } from "./input.interface";
-import { IInputUID } from "./input.uid.interface";
+import type { IPersistedEntity } from "../../primitives";
+import type { IInputBase } from "./input.base.interface";
+import type { IPersistedInputSnapshot } from "./persisted.input.snapshot.interface";
 
-export interface IPersistedInput<UIDType, ProcessUIDType>
+export interface IPersistedInput<UIDValueType, ProcessUIDValueType>
   extends IPersistedEntity<
-    InputState<ProcessUIDType>,
-    IInput<ProcessUIDType>,
-    UIDType,
-    IInputUID<UIDType, ProcessUIDType>
-  > {}
+      UIDValueType,
+      IPersistedInputSnapshot<UIDValueType, ProcessUIDValueType>,
+      IPersistedInput<UIDValueType, ProcessUIDValueType>
+    >,
+    IInputBase<
+      UIDValueType,
+      ProcessUIDValueType,
+      IPersistedInputSnapshot<UIDValueType, ProcessUIDValueType>
+    > {}

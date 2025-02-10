@@ -1,14 +1,18 @@
-import { PersistedEntity } from "../../primitives/oop/entity/implementations/persisted.entity";
-import { InputState } from "../input.state";
-import { IInput } from "../interfaces/input.interface";
-import { IInputUID } from "../interfaces/input.uid.interface";
 import { IPersistedInput } from "../interfaces/persisted.input.interface";
+import { IPersistedInputSnapshot } from "../interfaces/persisted.input.snapshot.interface";
+import { InputBase } from "./input.base";
 
-export class PersistedInput<UIDType, ProcessUIDType>
-  extends PersistedEntity<
-    InputState<ProcessUIDType>,
-    IInput<ProcessUIDType>,
-    UIDType,
-    IInputUID<UIDType, ProcessUIDType>
+export class PersistedInput<UIDValueType, ProcessUIDValueType>
+  extends InputBase<
+    UIDValueType,
+    ProcessUIDValueType,
+    IPersistedInputSnapshot<UIDValueType, ProcessUIDValueType>
   >
-  implements IPersistedInput<UIDType, ProcessUIDType> {}
+  implements IPersistedInput<UIDValueType, ProcessUIDValueType>
+{
+  isEquals(
+    valueToCompare: IPersistedInput<UIDValueType, ProcessUIDValueType>
+  ): boolean {
+    return this.data.uid === valueToCompare.getSnapshot().uid;
+  }
+}

@@ -1,9 +1,13 @@
 import { IPersistedEntity } from "@_core";
 
-import { IArticle } from "./article.interface";
-import { UIDType } from "../../../core/types";
-import { IArticleUID } from "./article.uid.interface";
-import { ArticleState } from "../article.state";
+import { UIDValueType } from "../../../core/types";
+import { IArticleBase } from "./article.base.interface";
+import { IPersistedArticleSnapshot } from "./persisted.article.snapshot.interface";
 
 export interface IPersistedArticle
-  extends IPersistedEntity<ArticleState, IArticle, UIDType, IArticleUID> {}
+  extends IPersistedEntity<
+      UIDValueType,
+      IPersistedArticleSnapshot,
+      IPersistedArticle
+    >,
+    IArticleBase<IPersistedArticleSnapshot> {}

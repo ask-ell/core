@@ -1,5 +1,10 @@
 import { IEntity } from "../../primitives";
-import { InputState } from "../input.state";
+import { IInputSnapshot } from "./input.snapshot.interface";
+import { IPersistedInputSnapshot } from "./persisted.input.snapshot.interface";
 
-export interface IInput<ProcessUIDType>
-  extends IEntity<InputState<ProcessUIDType>> {}
+export interface IInput<UIDValueType, ProcessUIDValueType>
+  extends IEntity<
+    UIDValueType,
+    IPersistedInputSnapshot<UIDValueType, ProcessUIDValueType>,
+    IInputSnapshot<UIDValueType, ProcessUIDValueType>
+  > {}

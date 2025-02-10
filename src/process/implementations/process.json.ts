@@ -1,8 +1,13 @@
 import { Json } from "../../resources";
 import { IPersistedProcess } from "../interfaces/persisted.process.interface";
-import { ProcessJsonData } from "../types";
+import { ProcessLog } from "../types";
 
-export class ProcessJson<UIDType> extends Json<ProcessJsonData> {
+type ProcessJSONData = {
+  result?: number;
+  stdout: ProcessLog[];
+};
+
+export class ProcessJson<UIDType> extends Json<ProcessJSONData> {
   constructor(process: IPersistedProcess<UIDType>) {
     super({
       stdout: process.getSnapshot().stdout,
