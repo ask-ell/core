@@ -26,7 +26,7 @@ export class UpdateArticleUseCase implements IUpdateArticleUseCase {
     MaybeUndefined<IPersistedArticleSnapshot>
   > {
     const articleToUpdateSnapshot: MaybeUndefined<IPersistedArticleSnapshot> =
-      await this.articleProvider.findOne(uid);
+      await this.articleProvider.findOneByUID(uid);
     if (!articleToUpdateSnapshot) {
       return undefined;
     }

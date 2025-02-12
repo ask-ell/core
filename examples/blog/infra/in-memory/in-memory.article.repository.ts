@@ -36,4 +36,8 @@ export class InMemoryArticleRepository implements IArticleRepository {
     );
     return breakReference(persistedEntitySnapshot);
   }
+
+  removeOne(uid: number): Promise<boolean> {
+    throw new Error("Method not implemented.");
+  }
 }

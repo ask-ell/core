@@ -14,4 +14,5 @@ export interface IEntityRepository<
   updateOne(
     persistedEntitySnapshot: _PersistedEntitySnapshot
   ): Promise<MaybeUndefined<_PersistedEntitySnapshot>>;
+  removeOne(uid: UIDValueType): Promise<boolean>;
 }

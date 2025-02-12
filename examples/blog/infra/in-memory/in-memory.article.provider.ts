@@ -1,4 +1,5 @@
 import { MaybeUndefined } from "@_core";
+import { Observable } from "rxjs";
 
 import {
   IArticleProvider,
@@ -10,8 +11,11 @@ import { fakeWait, breakReference } from "./utils";
 
 export class InMemoryArticleProvider implements IArticleProvider {
   constructor(private database: InMemoryDatabase) {}
+  findAll(): Promise<IPersistedArticleSnapshot[]> {
+    throw new Error("Method not implemented.");
+  }
 
-  async findOne(
+  async findOneByUID(
     uid: UIDValueType
   ): Promise<MaybeUndefined<IPersistedArticleSnapshot>> {
     await fakeWait();
@@ -21,5 +25,9 @@ export class InMemoryArticleProvider implements IArticleProvider {
       return undefined;
     }
     return breakReference(findedArticle);
+  }
+
+  lastSavedEntity$(): Observable<IPersistedArticleSnapshot> {
+    throw new Error("Method not implemented.");
   }
 }
