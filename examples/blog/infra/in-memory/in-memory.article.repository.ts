@@ -1,5 +1,3 @@
-import { MaybeUndefined } from "@_core";
-
 import {
   IArticleSnapshot,
   IArticleRepository,
@@ -28,13 +26,16 @@ export class InMemoryArticleRepository implements IArticleRepository {
 
   async updateOne(
     persistedEntitySnapshot: IPersistedArticleSnapshot
-  ): Promise<MaybeUndefined<IPersistedArticleSnapshot>> {
+  ): Promise<boolean> {
     await fakeWait();
+    if (!this.database.articles.get(persistedEntitySnapshot.uid)) {
+      return false;
+    }
     this.database.articles.set(
       persistedEntitySnapshot.uid,
       persistedEntitySnapshot
     );
-    return breakReference(persistedEntitySnapshot);
+    return true;
   }
 
   removeOne(uid: number): Promise<boolean> {
