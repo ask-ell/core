@@ -30,11 +30,18 @@ export class UpdateArticleUseCase implements IUpdateArticleUseCase {
     if (!articleToUpdateSnapshot) {
       return undefined;
     }
+
     const articleToUpdate: IPersistedArticle = new PersistedArticle(
       articleToUpdateSnapshot
     );
     articleToUpdate.setTitle(title);
     articleToUpdate.setDescription(description);
-    return this.articleRepository.updateOne(articleToUpdate.getSnapshot());
+
+    const updatedArticleSnapshot: IPersistedArticleSnapshot =
+      articleToUpdate.getSnapshot();
+    const hasBeenUpdated: boolean = await this.articleRepository.updateOne(
+      updatedArticleSnapshot
+    );
+    return hasBeenUpdated ? updatedArticleSnapshot : undefined;
   }
 }

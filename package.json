@@ -1,7 +1,7 @@
 {
   "name": "@ask-ell/core",
   "description": "Core library for Typescript/ Javascript projects",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "license": "MIT",
   "main": "dist/src/index.js",
   "scripts": {
