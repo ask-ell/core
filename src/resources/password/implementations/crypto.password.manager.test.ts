@@ -3,14 +3,17 @@ import { CryptoPasswordManager } from "@_core";
 
 describe(CryptoPasswordManager.name, (): void => {
   const passwordManager: IPasswordManager = new CryptoPasswordManager({
-    salt: "customSalt",
+    salt: "myReallyComplicatedCustomizedSalt",
+    generatedKeysLength: 20,
+    pbkdf2Iterations: 10,
+    algorithm: "sha256",
   });
 
   it("Can generate and detect specific password", async (): Promise<void> => {
     const hashedPassword: IHashedPassword =
       await passwordManager.generateFromPlainText("mySuperSecret");
     expect(
-      passwordManager.matchs("mySuperSecret", hashedPassword)
+      await passwordManager.matchs("mySuperSecret", hashedPassword)
     ).toBeTruthy();
   });
 
