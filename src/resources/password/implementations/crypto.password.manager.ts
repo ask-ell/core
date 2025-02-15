@@ -33,7 +33,7 @@ export class CryptoPasswordManager implements IPasswordManager {
 
   async generateFromPlainText(plainText: string): Promise<IHashedPassword> {
     const hashedValue: string = await this.generateHash(plainText);
-    return new HashedPassword(`${this.options.salt}:${hashedValue}`);
+    return new HashedPassword(hashedValue);
   }
 
   async generateRandom(size: number): Promise<GenerateRandomPasswordResultDTO> {
@@ -48,8 +48,7 @@ export class CryptoPasswordManager implements IPasswordManager {
     plainText: string,
     hashedPassword: IHashedPassword
   ): Promise<boolean> {
-    const [, hashedValue] = hashedPassword.toString().split(":");
-    return (await this.generateHash(plainText)) === hashedValue;
+    return (await this.generateHash(plainText)) === hashedPassword.toString();
   }
 
   private generateHash = (plainText: string): Promise<string> =>
