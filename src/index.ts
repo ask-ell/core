@@ -1,9 +1,3 @@
-import { ChangeDetectionQueue } from './change-detection-queue'
-import { Environment } from './environment'
-import { Logger } from './logger'
-import { isDefinedAndNotNull, isUndefinedOrNull } from './nullables'
-import { PercentageIncrementor } from './percentage-incrementor'
-import { wait } from './wait'
 import {
   type IO,
   type NumberOrNotDefined,
@@ -13,8 +7,14 @@ import {
   type OnIncrementCallback,
   type PercentageIncrementorState
 } from './types'
+import type { ILogger } from './logger.interface'
 import type { I_UID } from './uid.interface'
 import type { IUseCase } from './use-case.interface'
+import { ChangeDetectionQueue } from './change-detection-queue'
+import { Environment } from './environment'
+import { isDefinedAndNotNull, isUndefinedOrNull } from './nullables'
+import { PercentageIncrementor } from './percentage-incrementor'
+import { wait } from './wait'
 
 export * from './di'
 export * from './errors'
@@ -31,12 +31,12 @@ export type {
   OnChangesDetectedCallback,
   OnIncrementCallback,
   PercentageIncrementorState,
-  IUseCase
+  IUseCase,
+  ILogger
 }
 
 export {
   PercentageIncrementor,
-  Logger,
   Environment,
   ChangeDetectionQueue,
   wait,
