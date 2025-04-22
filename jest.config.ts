@@ -12,6 +12,7 @@ const jestConfig: JestConfigWithTsJest = {
   testEnvironment: "node",
   moduleNameMapper: {
     "^@_core$": "<rootDir>/src",
+    "^@_core/ddd$": "<rootDir>/src/ddd",
   },
 };
 

@@ -1,9 +1,10 @@
+import { UID } from "@_core/ddd";
+
 import {
-  IArticleSnapshot,
   IArticleRepository,
-  IPersistedArticleSnapshot,
-  UIDValueType,
-} from "../../domain";
+  ArticleAggregateRootState,
+  SaveArticleInput,
+} from "../../application";
 
 import { InMemoryDatabase } from "./in-memory.database";
 import { fakeWait, generateRandomUID, breakReference } from "./utils";
@@ -12,33 +13,30 @@ export class InMemoryArticleRepository implements IArticleRepository {
   constructor(private database: InMemoryDatabase) {}
 
   async save(
-    entitySnapshot: IArticleSnapshot
-  ): Promise<IPersistedArticleSnapshot> {
+    entityState: SaveArticleInput
+  ): Promise<ArticleAggregateRootState> {
     await fakeWait();
-    const uid: UIDValueType = generateRandomUID();
-    const newArticle: IPersistedArticleSnapshot = {
+    const uid: UID = generateRandomUID();
+    const newArticle: ArticleAggregateRootState = {
       uid,
-      ...entitySnapshot,
+      ...entityState,
     };
     this.database.articles.set(uid, newArticle);
     return breakReference(newArticle);
   }
 
   async updateOne(
-    persistedEntitySnapshot: IPersistedArticleSnapshot
+    aggregateRootState: ArticleAggregateRootState
   ): Promise<boolean> {
     await fakeWait();
-    if (!this.database.articles.get(persistedEntitySnapshot.uid)) {
+    if (!this.database.articles.get(aggregateRootState.uid)) {
       return false;
     }
-    this.database.articles.set(
-      persistedEntitySnapshot.uid,
-      persistedEntitySnapshot
-    );
+    this.database.articles.set(aggregateRootState.uid, aggregateRootState);
     return true;
   }
 
-  removeOne(uid: number): Promise<boolean> {
+  removeOne(uid: UID): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
 }

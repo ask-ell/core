@@ -21,13 +21,13 @@ export * from './errors'
 export * from './http'
 export * from './primitives'
 export * from './resources'
+export * from './result'
 
 export type {
   IO,
   NumberOrNotDefined,
   Option,
   StringOrNotDefined,
-  I_UID,
   OnChangesDetectedCallback,
   OnIncrementCallback,
   PercentageIncrementorState,
