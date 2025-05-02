@@ -8,8 +8,6 @@ import {
   type PercentageIncrementorState
 } from './types'
 import type { ILogger } from './logger.interface'
-import type { I_UID } from './uid.interface'
-import type { IUseCase } from './use-case.interface'
 import { ChangeDetectionQueue } from './change-detection-queue'
 import { Environment } from './environment'
 import { isDefinedAndNotNull, isUndefinedOrNull } from './nullables'
@@ -31,7 +29,6 @@ export type {
   OnChangesDetectedCallback,
   OnIncrementCallback,
   PercentageIncrementorState,
-  IUseCase,
   ILogger
 }
 
