@@ -1,5 +1,1 @@
-import { WrongArticleTitleSizeError } from "../../domain";
-
-export const ApplicationErrorsMap = {
-  WRONG_ARTICLE_TITLE_SIZE: WrongArticleTitleSizeError.name,
-};
+export * from "./wrong-article-title-size.error";

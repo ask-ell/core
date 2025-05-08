@@ -1,5 +1,5 @@
-import type { IArticle } from "../../domain";
-import { Article } from "../../domain";
+import type { IArticle } from "../domain";
+import { Article } from "../domain";
 
 import {
   CreateArticleUseCaseInput,

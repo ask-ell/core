@@ -11,7 +11,6 @@ import type { SaveArticleInput } from "./ports/driven/types";
 
 import { CreateArticleUseCase } from "./use-cases/create-article.use-case";
 import { UpdateArticleUseCase } from "./use-cases/update-article.use-case";
-import { ApplicationErrorsMap } from "./errors";
 
 export type {
   IUnitOfWork,
@@ -26,4 +25,5 @@ export type {
   ArticleAggregateRootState,
 };
 
-export { CreateArticleUseCase, UpdateArticleUseCase, ApplicationErrorsMap };
+export { CreateArticleUseCase, UpdateArticleUseCase };
+export * from "./errors";

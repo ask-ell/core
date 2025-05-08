@@ -1,31 +1,33 @@
-type LeftCallback<Data, T> = (data: Data) => T
-type RightCallback<T> = (error: Error) => T
+type SuccessCallback<Data, T> = (data: Data) => T
+type FailCallback<T> = (error: Error) => T
 
 export interface IResult<Data> {
   fold: <T>(
-    leftCallback: LeftCallback<Data, T>,
-    rightCallback: RightCallback<T>
+    successCallback: SuccessCallback<Data, T>,
+    failCallback: FailCallback<T>
   ) => T
 }
 
 class Result<Data> implements IResult<Data> {
   constructor(
-    private readonly leftValue?: Data,
-    private readonly rightValue?: Error
+    private readonly successValue?: Data,
+    private readonly failValue?: Error
   ) {}
 
   fold<T>(
-    leftCallback: LeftCallback<Data, T>,
-    rightCallback: RightCallback<T>
+    successCallback: SuccessCallback<Data, T>,
+    failCallback: FailCallback<T>
   ): T {
-    if (this.rightValue != null) {
-      return rightCallback(this.rightValue)
+    if (this.failValue != null) {
+      return failCallback(this.failValue)
     }
-    return leftCallback(this.leftValue as Data)
+    return successCallback(this.successValue as Data)
   }
 }
 
-export const ok = <T>(data: T): IResult<T> => new Result(data, undefined)
+export const success = <T>(data: T): IResult<T> => new Result(data, undefined)
+
+export const ok = (): IResult<void> => success(undefined)
 
 export const fail = <T>(error: Error): Result<T> =>
   new Result<T>(undefined, error)

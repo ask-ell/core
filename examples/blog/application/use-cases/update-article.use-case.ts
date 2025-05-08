@@ -1,6 +1,6 @@
 import type { MaybeUndefined } from "@_core";
 
-import { Article, IArticle, IArticleState } from "../../domain";
+import { Article, IArticle, IArticleState } from "../domain";
 
 import { IUpdateArticleUseCase } from "../ports/driving/update-article.use-case.interface";
 import {

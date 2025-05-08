@@ -8,8 +8,8 @@ import {
   IUpdateArticleUseCase,
   UpdateArticleUseCase,
   UpdateArticleUseCaseOutput,
-  ApplicationErrorsMap,
   IUnitOfWork,
+  WrongArticleTitleSizeError,
 } from "./application";
 
 import { InMemoryUnitOfWork } from "./infra/in-memory";
@@ -45,9 +45,7 @@ describe("Blog", (): void => {
       await createArticleUseCase.run(dto);
       throw new TestMustFailError();
     } catch (error: any) {
-      expect(error.constructor.name).toBe(
-        ApplicationErrorsMap.WRONG_ARTICLE_TITLE_SIZE
-      );
+      expect(error).toBeInstanceOf(WrongArticleTitleSizeError);
     }
   });
 
@@ -60,9 +58,7 @@ describe("Blog", (): void => {
       await updateArticleUseCase.run(dto);
       throw new TestMustFailError();
     } catch (error: any) {
-      expect(error.constructor.name).toBe(
-        ApplicationErrorsMap.WRONG_ARTICLE_TITLE_SIZE
-      );
+      expect(error).toBeInstanceOf(WrongArticleTitleSizeError);
     }
   });
 

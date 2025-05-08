@@ -13,6 +13,7 @@ const jestConfig: JestConfigWithTsJest = {
   moduleNameMapper: {
     "^@_core$": "<rootDir>/src",
     "^@_core/ddd$": "<rootDir>/src/ddd",
+    "^@_core/hexa$": "<rootDir>/src/hexa",
   },
 };
 
