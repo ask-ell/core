@@ -1,7 +1,7 @@
 import { MaybeUndefined } from "@_core";
 import { UID } from "@_core/ddd";
 
-import type { IArticleState } from "../../../domain";
+import type { IArticleState } from "../../domain";
 import { ArticleAggregateRootState } from "../driven/types";
 
 export type CreateArticleUseCaseInput = IArticleState;
