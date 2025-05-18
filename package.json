@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "dist/src/index.js",
   "scripts": {
-    "build": "tsc",
-    "build:doc": "typedoc --out docs ./src",
+    "build": "tsc && typedoc --out docs ./src",
     "format": "lint-staged",
     "lint": "eslint src/*.ts --fix",
+    "start:dev": "jest --watchAll",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "install:husky": "husky install .husky"
