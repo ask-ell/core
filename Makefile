@@ -1,45 +1,58 @@
-compose := docker compose
-run := $(compose) run --rm
-defaultService := node
+ASK_VERSION := "0.0.3"
 
-node_modules/time:
-	$(run) -T $(defaultService) yarn
-	$(run) -T $(defaultService) yarn install:husky
-	touch node_modules/time
+.PHONY: reload-makefile
+# Reload Makefile from latest Ask version
+reload-makefile:
+	curl -o Makefile https://raw.githubusercontent.com/ask-ell/scripts/refs/heads/release/node.Makefile
 
-dist/time:
-	$(MAKE) build
+.PHONY: help
+# Show help
+help:
+	@cat $(MAKEFILE_LIST) | docker run --rm -i xanders/make-help
 
-.PHONY: shell
-shell:
-	$(run) $(defaultService) /bin/bash
+.env:
+	cp .env.sample .env
 
-.PHONY: format
-format: node_modules/time
-	$(run) -T -v ~/.gitconfig:/home/node/.gitconfig $(defaultService) yarn format
+.PHONY: install
+# Install dependencies
+install:
+	npm install
+	date > node_modules/last_install
 
-.PHONY: lint
-lint: node_modules/time
-	$(run) -T $(defaultService) yarn lint
-
-.PHONY: test
-test: node_modules/time
-	$(run) $(defaultService) yarn test
-
-.PHONY: test-watch
-test-watch: node_modules/time
-	$(run) $(defaultService) yarn test:watch
+node_modules/last_install:
+	@make install
 
 .PHONY: build
-build: node_modules/time
-	$(run) $(defaultService) yarn build
-	$(run) $(defaultService) yarn build:doc
-	touch dist/time
+# Build project
+build:
+	npm run build
+	mkdir -p build
+	date > build/last_build
 
-.PHONY: publish
-publish: dist/time
-	$(run) $(defaultService) npm login && npm publish
+build/last_build:
+	@make build
 
-.PHONY: clean
-clean:
-	$(compose) down --volumes
+.PHONY: serve
+# Run project in development mode
+serve: .env node_modules/last_install
+	npm run start:dev
+
+.PHONY: format
+# Format project
+format:
+	npm run format
+
+.PHONY: lint
+# Format project
+lint:
+	npm run lint
+
+.PHONY: test
+# Run tests
+test: node_modules/last_install
+	npm run test
+
+.PHONY: test-watch
+# Run tests in watch mode
+test-watch: node_modules/last_install
+	npm run test:watch
